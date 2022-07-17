@@ -1,47 +1,77 @@
+import { useForm } from "react-hook-form";
 import Input from "../input";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegisterShema } from "../yup";
 
 const RegisterArea = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(RegisterShema) });
+  const onSubmitFunction = (data) => {
+    console.log(data);
+  };
   return (
     <section>
       <h1>Cadastro</h1>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(onSubmitFunction)}>
         <Input
           type="text"
-          name=""
+          name="name"
           label={"Nome"}
           placeholder=" Digite seu nome."
+          register={register}
+          errors={errors.name}
         />
-        <Input type="date" name="" label={"Data de Nascimento"} />
+        <Input
+          type="date"
+          name="birthDate"
+          label={"Data de Nascimento"}
+          register={register}
+          errors={errors.birthDate}
+        />
         <Input
           type="text"
-          name=""
+          name="contact"
           label={"Contato"}
           placeholder="Digite o seu contato."
+          register={register}
+          errors={errors.contact}
         />
         <Input
           type="text"
-          name=""
+          name="email"
           label={"Email"}
           placeholder="Digite seu Email."
+          register={register}
+          errors={errors.email}
         />
         <Input
           type="text"
-          name=""
+          name="confirmEmail"
           label={"Confirmar Email."}
           placeholder="Confirme seu Email."
+          register={register}
+          errors={errors.confirmEmail}
         />
         <Input
-          type="text"
-          name=""
+          type="passoword"
+          name="passoword"
           label={"Senha"}
           placeholder="Digite sua senha."
+          register={register}
+          errors={errors.passoword}
         />
         <Input
-          type="text"
-          name=""
+          type="passoword"
+          name="confirmPassoword"
           label={"Confirmar senha."}
           placeholder="Confirme sua senha."
+          register={register}
+          errors={errors.confirmPassoword}
         />
+        <button>Cadastrar</button>
       </form>
     </section>
   );

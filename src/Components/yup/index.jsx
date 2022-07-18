@@ -20,8 +20,7 @@ const RegisterShema = yup.object().shape({
     .matches(upperCaseRegex, "No mínimo uma letra maiúsculo.")
     .matches(lowerCaseRegex, "No mínimo uma letra minúsculo.")
     .matches(numericRegex, "No mínimo um numero.")
-    .matches(magicRegex, "No mínimo um caractere especial(!@#$).")
-    .max(10, "Máximo 10 caracteres."),
+    .matches(magicRegex, "No mínimo um caractere especial(!@#$)."),
   confirmPassoword: yup
     .string()
     .required("Campo obrigatório.")
